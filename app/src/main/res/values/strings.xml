@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Health</string>
+    <string name="name">Name :</string>
+    <string name="name_hint">Edit your name</string>
+    <string name="birthday">Birthday :</string>
+    <string name="birthday_hint">23–08–1992</string>
+    <string name="gender">Gender :</string>
+    <string name="gender_hint">male/female</string>
+    <string name="update">Update</string>
+    <string name="Detail">Detail</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_sort">Sort by name</string>
+</resources>

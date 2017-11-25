@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.vatsal.com.health.ui.activities.DetailActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/black" />
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TextView"
+            android:layout_alignBaseline="@+id/edit_name"
+            android:text="@string/name" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            style="@style/EditText"
+            android:layout_toEndOf="@+id/name"
+            android:hint="@string/name_hint"
+            tools:text="Vatsal Patel" />
+
+        <TextView
+            android:id="@+id/birthday"
+            style="@style/TextView"
+            android:layout_alignBaseline="@+id/edit_birthday"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="10dp"
+            android:text="@string/birthday" />
+
+        <EditText
+            android:id="@+id/edit_birthday"
+            style="@style/EditText"
+            android:layout_below="@id/edit_name"
+            android:layout_toEndOf="@+id/birthday"
+            android:hint="@string/birthday_hint"
+            android:inputType="date"
+            tools:text="23-08-1992" />
+
+        <TextView
+            android:id="@+id/gender"
+            style="@style/TextView"
+            android:layout_alignBaseline="@+id/edit_gender"
+            android:layout_below="@+id/birthday"
+            android:layout_marginTop="10dp"
+            android:text="@string/gender" />
+
+        <EditText
+            android:id="@+id/edit_gender"
+            style="@style/EditText"
+            android:layout_below="@id/edit_birthday"
+            android:layout_toEndOf="@+id/birthday"
+            android:hint="@string/gender_hint"
+            tools:text="Male" />
+
+        <Button
+            android:id="@+id/update"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/gender"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:text="@string/update" />
+
+    </RelativeLayout>
+
+</LinearLayout>
