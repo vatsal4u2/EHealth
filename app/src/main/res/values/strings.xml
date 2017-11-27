@@ -7,7 +7,14 @@
     <string name="gender">Gender :</string>
     <string name="gender_hint">male/female</string>
     <string name="update">Update</string>
-    <string name="Detail">Detail</string>
+    <string name="Detail">Details</string>
     <string name="menu_refresh">Refresh</string>
     <string name="menu_sort">Sort by name</string>
+    <string name="more_details">More details</string>
+    <string name="empty_list">Content is not available. Please try later.</string>
+    <string name="error_msg">Sorry, there was some technical error. Please try later.</string>
+    <string name="below_are_the_list">Below are the list of patients. Click on them to check more details.</string>
+    <string name="patient_details">Patient Details</string>
+    <string name="not_available">Not Available</string>
+
 </resources>

@@ -1,12 +1,17 @@
 package com.vatsal.com.health.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vatsal.com.health.R;
+import com.vatsal.com.health.models.Name;
+import com.vatsal.com.health.models.Patient;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,11 +22,20 @@ import butterknife.ButterKnife;
 
 public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHolder> {
 
-    private String[] mDataSet;
-    private ListItemClickListener mListener;
+    private List<Patient> patientList;
+    private ItemClickListener mListener;
 
-    public PatientAdapter(String[] data) {
-        mDataSet = data;
+    public PatientAdapter() {
+
+    }
+
+    public void bindListener(ItemClickListener listener) {
+        mListener = listener;
+    }
+
+    public void addItems(List<Patient> patientList) {
+        this.patientList = patientList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -33,24 +47,41 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mPatientName.setText(mDataSet[position]);
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+
+
+        String name = "";
+        Name nameObj = patientList.get(position).getResource().getContact().get(0).getName();
+        for (String stringObj : nameObj.getGiven()) {
+            if (!TextUtils.isEmpty(stringObj))
+                name = stringObj;
+        }
+
+        if (!TextUtils.isEmpty(nameObj.getFamily())) {
+            name = name + " " + nameObj.getFamily();
+        }
+
+        holder.mPatientName.setText(name);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) mListener.OnItemClick(patientList.get(position));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        if (patientList == null)
+            return 0;
+        return patientList.size();
     }
 
-    public void setClickListener(ListItemClickListener listener) {
-        mListener = listener;
+    public interface ItemClickListener {
+        void OnItemClick(Patient patient);
     }
 
-    public interface ListItemClickListener {
-        void OnItemClick(int position);
-    }
-
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.patient_name)
         TextView mPatientName;
@@ -58,12 +89,6 @@ public class PatientAdapter extends RecyclerView.Adapter<PatientAdapter.ViewHold
         ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            mListener.OnItemClick(getAdapterPosition());
         }
     }
 }
